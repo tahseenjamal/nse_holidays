@@ -15,7 +15,6 @@ def trading_day():
 
             holiday = datetime.strptime(string, "%d-%b-%Y").date()
 
-            # Without str, it would give as date type
             return holiday
 
         except ValueError:
@@ -39,13 +38,17 @@ def trading_day():
         string_array.extend(row.text.splitlines())
 
     for string in string_array:
+
         valid = parse_date(string)
+
         if not valid:
+
             continue
 
         holidays.append(valid)
 
     if date.today().weekday in [6,7] or date.today() in holidays:
+
         return False
 
     return True
