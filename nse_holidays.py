@@ -3,10 +3,10 @@
 # tahseen(dot)jamal(at)gmail.com
 
 from dateutil.parser import parse
-from datetime import datetime
+from datetime import datetime, date
 import bs4, requests
 
-def holidays():
+def trading_day():
 
     holidays = []
 
@@ -16,7 +16,7 @@ def holidays():
             holiday = datetime.strptime(string, "%d-%b-%Y").date()
 
             # Without str, it would give as date type
-            return str(holiday)
+            return holiday
 
         except ValueError:
 
@@ -45,7 +45,13 @@ def holidays():
 
         holidays.append(valid)
 
-    return holidays
+    if date.today().weekday in [6,7] or date.today() in holidays:
+        return False
 
-# Returns string array of holidays. If you want as type date, remove the str() in the function
-print(holidays())
+    return True
+
+# print(trading_day())
+
+
+
+
