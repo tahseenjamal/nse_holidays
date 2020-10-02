@@ -4,7 +4,8 @@
 
 from dateutil.parser import parse
 from datetime import datetime, date
-import bs4, requests
+from selenium import webdriver
+import bs4, os
 
 def trading_day():
 
@@ -23,11 +24,21 @@ def trading_day():
 
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
-    url = 'https://www.nseindia.com/products/content/equities/equities/mrkt_timing_holidays.htm'
+    url = 'https://www1.nseindia.com/products/content/equities/equities/mrkt_timing_holidays.htm'
 
-    data = requests.get(url, headers=headers)
+    os.environ['MOZ_HEADLESS'] = '1'
 
-    html = bs4.BeautifulSoup(data.content, 'lxml')
+    driver = webdriver.Firefox()
+
+    driver.get(url)
+
+    page_content = driver.page_source
+
+    os.environ['MOZ_HEADLESS'] = '0'
+
+    driver.close()
+
+    html = bs4.BeautifulSoup(page_content, 'lxml')
     tables = html.find("table", { "class" : "holiday_list" })
     rows = tables.findAll('td')
 
@@ -47,13 +58,15 @@ def trading_day():
 
         holidays.append(valid)
 
+    print(holidays)
+
     if date.today().weekday in [6,7] or date.today() in holidays:
 
         return False
 
     return True
 
-# print(trading_day())
+print(trading_day())
 
 
 

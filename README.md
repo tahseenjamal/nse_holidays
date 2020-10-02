@@ -1,8 +1,7 @@
-Using pip or conda, install below dependencies in your virtual environment
+In your virtual environment install bs4, lxml and selenium
 
-bs4
-
-requests
+Also download geckodriver from https://github.com/mozilla/geckodriver/releases and copy it in a folder which is in your PATH variable 
+In case of Linux you can move the geckdriver in /usr/local/bin folder
 
 
 import the nse_holidays and use trading_day() function
