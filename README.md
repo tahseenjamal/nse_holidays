@@ -1,13 +1,10 @@
-In your virtual environment install bs4, lxml and selenium
+Ensure you have geckodriver binary is in your path, you can se it from https://github.com/mozilla/geckodriver/releases 
 
-Also download geckodriver from https://github.com/mozilla/geckodriver/releases and copy it in a folder which is in your PATH variable 
 In case of Linux you can move the geckdriver in /usr/local/bin folder
 
+And that you have installed Selinium using pip or conda
 
-import the nse_holidays and use trading_day() function
-
-It returns True for trading day and False for weekends and holidays
-
+This program works with new NSE URL
 
 Enjoy!!
 Tahseen Jamal
