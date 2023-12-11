@@ -1,6 +1,7 @@
 # Coded by: Tahseen Jamal
 # Github: github.com/tahseenjamal
 # tahseen(dot)jamal(at)gmail.com
+# ================================
 
 from datetime import datetime, date
 from selenium import webdriver
