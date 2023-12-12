@@ -29,7 +29,7 @@ def get_nse_holidays:
 
     return holidays
 
-def is_today_a_trading_day(holidays):
+def is_today_a_trading_holiday(holidays):
 
     # If today is in weekends or in the holiday dates then return true
     if date.today().weekday in [6,7] or date.today() in holidays:
@@ -40,7 +40,7 @@ def is_today_a_trading_day(holidays):
 
 holidays = get_nse_holidays()
 
-print(is_today_a_trading_day(holidays))
+print(is_today_a_trading_holiday(holidays))
 
 
 
